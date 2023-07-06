@@ -712,12 +712,12 @@ class Musica_has_artistas:
         cursor = banco.cursor()
         
         data = request.json
-        musica_id = data.get('musicas_id')
+        musicas_id = data.get('musicas_id')
         artistas_id = data.get('artistas_id')
         
         insert = ('INSERT INTO musicas_has_artistas '
                   '(musica_id, artistas_id)'
-                  ' VALUES ("' + str(musica_id) + '",' + str(artistas_id) + ');'
+                  ' VALUES (' + str(musicas_id) + ',' + str(artistas_id) + ');'
                     )
         cursor.execute(insert)
         banco.commit()

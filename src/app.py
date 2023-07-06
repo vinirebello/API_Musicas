@@ -173,17 +173,17 @@ def select_mha():
     return Musica_has_artistas.get_mha() 
 
 @app.route('/musicas_has_artistas/<int:mha_id>', methods=['GET'])
-def select_mha_id():
-    return Musica_has_artistas.get_mha_id()
+def select_mha_id(mha_id):
+    return Musica_has_artistas.get_mha_id(mha_id)
 
 @app.route('/musicas_has_artistas/<int:mha_id>', methods=['PUT'])
-def update_mha():
-    Musica_has_artistas.atualiza_mha
+def update_mha(mha_id):
+    Musica_has_artistas.atualiza_mha(mha_id)
     return 'Musica_has_artistas atualizado com sucesso!'
 
 @app.route('/musicas_has_artistas/<int:mha_id>', methods=['DELETE'])
-def delete_mha():
-    Musica_has_artistas.deleta_mha()
+def delete_mha(mha_id):
+    Musica_has_artistas.deleta_mha(mha_id)
     return 'Musica_has_artistas deletado com sucesso!'
 
 # #---------------------------------Musica_has_clientes---------------------------------------------
