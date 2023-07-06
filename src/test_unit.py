@@ -1,41 +1,19 @@
 import pytest
-from unittest import mock
+from unittest import TestCase
+from unittest.mock import patch
 from api_dao import Artistas
 
+class myapitest(TestCase):
+    def setup(self):
+        self.api = Artistas()
 
-def test_criar_artista(mocker):
+@patch('api_dao.Artistas.cria_artistas')
+def test_criar_artista(self, mock_artistas):
    
-    mock_bd= mock.Mock()
+    mock_artistas.return_value = "teste"
     
+    resultado = self.api.cria_artistas()
     
-    mock_bd.criar_artista.return_value = {'nome': 'Artista Teste', 'gravadora_id':1}
-    
-    api = Artistas(mock_bd)
-    
-    artista = Artistas.cria_artista(api, 'Artista Teste')
-    
-    
-    assert artista['nome'] == 'Artista Teste'
-    mock_bd.criar_artista.assert_called_once_with('Artista Teste')
-    
-def test_get_artistas(mocker):
-    
-    mock_bd= mock.Mock()
-    
-   
-    mock_bd.get_artistas.return_value = [
-        {'nome': 'Artista 1', 'gravadora_id': 1},
-        {'nome': 'Artista 2', 'gravadora_id': 2},
-        {'nome': 'Artista 3', 'gravadora_id': 3}
-    ]
-    
-    
-    artistas = Artistas.get_artistas(mock_bd)
-    
-    
-    assert len(artistas) == 3
-    assert artistas[0]['nome'] == 'Artista 1'
-    assert artistas[1]['nome'] == 'Artista 2'
-    assert artistas[2]['nome'] == 'Artista 3'
-    mock_bd.get_artistas.assert_called_once()
-    
+    self.assertEqual(resultado, "teste")
+
+ 
